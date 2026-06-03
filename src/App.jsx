@@ -1,5 +1,6 @@
+import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import BioPage from './pages/Bio.jsx' 
+import BioPage from './pages/Bio.jsx'
 
 function App() {
   return (
@@ -10,5 +11,3 @@ function App() {
     </BrowserRouter>
   )
 }
-
-export default App
