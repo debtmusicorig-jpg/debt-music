@@ -1,3 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import BioPage from './pages/Bio.jsx' 
-import AdminPage from './pages/Admin.jsx'
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<BioPage />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App
