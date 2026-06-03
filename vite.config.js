@@ -9,4 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    sourcemap: false, // Prevents Vercel from getting stuck in an infinite transform loop
+  },
 })
