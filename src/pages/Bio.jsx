@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BioText from '../entities/BioText.jsx';
+import BioText from '@/entities/BioText.jsx';
 import { BioMedia } from '@/entities/BioMedia';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
