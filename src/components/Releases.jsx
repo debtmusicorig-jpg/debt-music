@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Release from '../entities/Release.json';
-import ReleaseCard from './ReleaseCard.json';
+import ReleaseCard from './ReleaseCard.jsx';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Releases({ title, description, type, limit }) {
