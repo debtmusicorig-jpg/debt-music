@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BioText from '@/entities/BioText.json';
-import { BioMedia } from '@/entities/BioMedia';
+import BioMedia from '@/entities/BioMedia.json';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { BookUser, Camera, Video } from 'lucide-react';
