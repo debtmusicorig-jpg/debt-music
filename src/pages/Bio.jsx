@@ -17,3 +17,20 @@ export default function BioPage() {
           </p>
         </section>
 
+        <section style={{ marginBottom: '50px' }}>
+          <h2 style={{ marginBottom: '20px' }}>Latest Music</h2>
+          <p style={{ color: '#888' }}>Streaming players loading directly from your track files...</p>
+        </section>
+
+        <section>
+          <h2>Merchandise & Vinyl</h2>
+          <p style={{ color: '#888' }}>Physical record releases and band items catalog...</p>
+        </section>
+      </main>
+
+      <footer style={{ marginTop: '60px', color: '#555', fontSize: '0.9rem' }}>
+        <p>&copy; {new Date().getFullYear()} D.E.B.T-Music. All Rights Reserved.</p>
+      </footer>
+    </div>
+  )
+}
