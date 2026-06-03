@@ -1,68 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import Release from '../entities/Release.json';
-import ReleaseCard from './ReleaseCard.jsx';
-import { Skeleton } from '@/components/ui/skeleton';
+import React, { useState, useEffect } from 'react'
+import ReleaseCard from './ReleaseCard.jsx'
+import BioText from '../entities/BioText.json'
+import BioMedia from '../entities/BioMedia.json'
+import ReleaseData from '../entities/Release.json'
 
-export default function Releases({ title, description, type, limit }) {
-  const [releases, setReleases] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function Releases() {
+  const [releases, setReleases] = useState([])
+  const biography = BioText?.biography || "Welcome to the official home of D.E.B.T-Music. Combining intimate folk acoustic storytelling with raw rock instrumentation."
 
   useEffect(() => {
-    const fetchReleases = async () => {
-      setIsLoading(true);
-      try {
-        let data;
-        if (type) {
-          data = await Release.filter({ type }, '-release_date', limit);
-        } else {
-          data = await Release.list('-release_date', limit);
-        }
-        setReleases(data || []);
-      } catch (error) {
-        console.error("Failed to fetch releases:", error);
-        setReleases([]);
-      }
-      setIsLoading(false);
-    };
-    fetchReleases();
-  }, [type, limit]);
-
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-6">
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <Skeleton className="h-12 w-3/4 mx-auto bg-neutral-800" />
-          <Skeleton className="h-6 w-1/2 mx-auto mt-4 bg-neutral-800" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Array.from({ length: limit || 3 }).map((_, index) => (
-            <div key={index} className="space-y-4">
-              <Skeleton className="h-64 w-full bg-neutral-800" />
-              <Skeleton className="h-6 w-3/4 bg-neutral-800" />
-              <Skeleton className="h-4 w-1/2 bg-neutral-800" />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (releases.length === 0) {
-    return null; // Don't render the section if there are no releases
-  }
+    // Safely loading your authentic release files straight from your GitHub folder
+    if (ReleaseData) {
+      const formattedReleases = Array.isArray(ReleaseData) ? ReleaseData : [ReleaseData]
+      setReleases(formattedReleases)
+    }
+  }, [])
 
   return (
-    <div className="container mx-auto px-6">
-      <div className="max-w-2xl mx-auto text-center mb-16">
-        <h2 className="text-4xl font-extrabold tracking-tight text-blue-500 sm:text-5xl">{title}</h2>
-        <p className="mt-4 text-lg text-neutral-400">
-          {description}
-        </p>
-      </div>
+    <div style={{ backgroundColor: '#111', color: '#fff', minHeight: '100vh', fontFamily: 'sans-serif', padding: '40px 20px' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+        
+        {/* BRANDING HEADER */}
+        <header style={{ marginBottom: '40px' }}>
+          <h1 style={{ fontSize: '3rem', letterSpacing: '4px', margin: '0 0 10px 0', color: '#fff' }}>D E B T - M u s i c</h1>
+          <p style={{ fontStyle: 'italic', color: '#aaa', fontSize: '1.2rem' }}>Singer / Songwriter • Rock • Folk</p>
+        </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {releases.map(release => <ReleaseCard key={release.id} release={release} />)}
+        {/* BIOGRAPHY AREA */}
+        <section style={{ marginBottom: '40px', background: '#1c1c1c', padding: '30px', borderRadius: '8px', textAlign: 'left', border: '1px solid #333' }}>
+          <h2 style={{ color: '#f5a623', borderBottom: '1px solid #333', paddingBottom: '10px', marginTop: '0' }}>Biography</h2>
+          <p style={{ lineHeight: '1.6', color: '#ddd', fontSize: '1.1rem' }}>{biography}</p>
+        </section>
+
+        {/* RELEASES VISUAL RENDERING GRID */}
+        <section style={{ textAlign: 'left' }}>
+          <h2 style={{ color: '#f5a623', marginBottom: '20px' }}>Featured Releases</h2>
+          <div style={{ display: 'grid', gap: '20px' }}>
+            {releases.length > 0 ? (
+              releases.map((item, index) => (
+                <ReleaseCard key={item.id || index} release={item} />
+              ))
+            ) : (
+              <p style={{ color: '#666' }}>Loading album details...</p>
+            )}
+          </div>
+        </section>
+
       </div>
     </div>
-  );
+  )
 }
