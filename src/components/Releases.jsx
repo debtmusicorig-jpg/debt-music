@@ -1,47 +1,49 @@
 import React, { useState, useEffect } from 'react'
 import ReleaseCard from './ReleaseCard.jsx'
-import BioText from '../entities/BioText.json'
-import BioMedia from '../entities/BioMedia.json'
+import Layout from '../Layout.jsx'
+
+// Importing your real album database records from your entities folder
 import ReleaseData from '../entities/Release.json'
+import BioText from '../entities/BioText.json'
 
 export default function Releases() {
   const [releases, setReleases] = useState([])
-  const biography = BioText?.biography || "Welcome to the official home of D.E.B.T-Music. Combining intimate folk acoustic storytelling with raw rock instrumentation."
+  const biography = BioText?.biography || "D.E.B.T-Music: Custom singer-songwriter, rock, and folk compositions."
 
   useEffect(() => {
-    // Safely loading your authentic release files straight from your GitHub folder
+    // Safely mapping your real album data into your visual design loops
     if (ReleaseData) {
-      const formattedReleases = Array.isArray(ReleaseData) ? ReleaseData : [ReleaseData]
-      setReleases(formattedReleases)
+      const list = Array.isArray(ReleaseData) ? ReleaseData : [ReleaseData]
+      setReleases(list)
     }
   }, [])
 
   return (
-    <div style={{ backgroundColor: '#111', color: '#fff', minHeight: '100vh', fontFamily: 'sans-serif', padding: '40px 20px' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+    <div className="min-h-screen bg-background text-foreground p-6 md:p-12">
+      <div className="max-w-4xl mx-auto space-y-12">
         
-        {/* BRANDING HEADER */}
-        <header style={{ marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '3rem', letterSpacing: '4px', margin: '0 0 10px 0', color: '#fff' }}>D E B T - M u s i c</h1>
-          <p style={{ fontStyle: 'italic', color: '#aaa', fontSize: '1.2rem' }}>Singer / Songwriter • Rock • Folk</p>
+        {/* YOUR VISUAL BRAND HEADER */}
+        <header className="text-center space-y-2">
+          <h1 className="text-5xl font-bold tracking-widest text-primary">D E B T - M u s i c</h1>
+          <p className="text-xl text-muted-foreground font-medium">Singer / Songwriter • Rock • Folk</p>
         </header>
 
-        {/* BIOGRAPHY AREA */}
-        <section style={{ marginBottom: '40px', background: '#1c1c1c', padding: '30px', borderRadius: '8px', textAlign: 'left', border: '1px solid #333' }}>
-          <h2 style={{ color: '#f5a623', borderBottom: '1px solid #333', paddingBottom: '10px', marginTop: '0' }}>Biography</h2>
-          <p style={{ lineHeight: '1.6', color: '#ddd', fontSize: '1.1rem' }}>{biography}</p>
+        {/* YOUR AUTHENTIC BIOGRAPHY LAYOUT */}
+        <section className="bg-card text-card-foreground p-8 rounded-lg border shadow-sm">
+          <h2 className="text-2xl font-semibold border-b pb-2 mb-4 text-primary">Biography</h2>
+          <p className="text-lg leading-relaxed text-muted-foreground">{biography}</p>
         </section>
 
-        {/* RELEASES VISUAL RENDERING GRID */}
-        <section style={{ textAlign: 'left' }}>
-          <h2 style={{ color: '#f5a623', marginBottom: '20px' }}>Featured Releases</h2>
-          <div style={{ display: 'grid', gap: '20px' }}>
+        {/* YOUR TRUE RELEASES / ALBUM / EP LISTING GRID */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-semibold text-primary">Featured Releases</h2>
+          <div className="grid gap-6">
             {releases.length > 0 ? (
               releases.map((item, index) => (
                 <ReleaseCard key={item.id || index} release={item} />
               ))
             ) : (
-              <p style={{ color: '#666' }}>Loading album details...</p>
+              <p className="text-muted-foreground text-center">Loading your album tracks...</p>
             )}
           </div>
         </section>
