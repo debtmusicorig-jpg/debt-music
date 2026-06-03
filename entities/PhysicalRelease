@@ -1,0 +1,80 @@
+{
+  "name": "PhysicalRelease",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the physical release"
+    },
+    "release_type": {
+      "type": "string",
+      "enum": [
+        "Album",
+        "EP",
+        "Single"
+      ],
+      "description": "Type of release"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "Vinyl",
+        "CD",
+        "Digital Download"
+      ],
+      "description": "Physical format available"
+    },
+    "cover_art_url": {
+      "type": "string",
+      "description": "URL of the album/single cover art"
+    },
+    "rear_cover_url": {
+      "type": "string",
+      "description": "URL of the rear cover or tracklist image"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the physical release"
+    },
+    "purchase_platform": {
+      "type": "string",
+      "enum": [
+        "Even",
+        "Elastic Stage",
+        "Bandcamp"
+      ],
+      "description": "Platform for purchasing the release"
+    },
+    "purchase_url": {
+      "type": "string",
+      "description": "URL where customers can purchase the physical release"
+    },
+    "physical_release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Physical release date"
+    },
+    "streaming_release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Streaming release date (if different)"
+    }
+  },
+  "required": [
+    "title",
+    "release_type",
+    "format",
+    "cover_art_url",
+    "purchase_platform",
+    "purchase_url",
+    "physical_release_date"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "SiteSettings",
+  "type": "object",
+  "properties": {
+    "logo_url": {
+      "type": "string",
+      "description": "URL of the uploaded site logo/banner"
+    },
+    "site_name": {
+      "type": "string",
+      "default": "D.E.B.T-MUSIC HUB",
+      "description": "Site name displayed in header"
+    },
+    "tip_jar_url": {
+      "type": "string",
+      "description": "URL for the external tipping page (e.g., PayPal.Me, BuyMeACoffee)"
+    }
+  },
+  "required": [],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

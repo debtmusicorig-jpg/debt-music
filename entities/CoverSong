@@ -1,0 +1,68 @@
+{
+  "name": "CoverSong",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the cover song"
+    },
+    "original_artist": {
+      "type": "string",
+      "description": "The original artist of the song"
+    },
+    "cover_art_url": {
+      "type": "string",
+      "description": "URL for the cover art image"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "URL for the uploaded audio file of the cover song"
+    },
+    "streaming_links": {
+      "type": "array",
+      "description": "Links to the cover song on streaming platforms",
+      "items": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "Spotify",
+              "Apple Music",
+              "YouTube",
+              "SoundCloud",
+              "Bandcamp",
+              "Amazon Music"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the cover was released"
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description or notes about the cover song"
+    }
+  },
+  "required": [
+    "title",
+    "original_artist",
+    "cover_art_url",
+    "release_date"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

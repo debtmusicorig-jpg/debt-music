@@ -1,0 +1,81 @@
+{
+  "name": "Release",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the song or album"
+    },
+    "album_name": {
+      "type": "string",
+      "description": "The name of the album (for singles from albums)"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the music was released"
+    },
+    "cover_art_url": {
+      "type": "string",
+      "description": "URL of the album/single cover art"
+    },
+    "video_url": {
+      "type": "string",
+      "description": "URL of the uploaded music video"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Single Only",
+        "Single from Album",
+        "Album",
+        "EP",
+        "Unreleased",
+        "Bonus only available On D.E.B.T-Music"
+      ],
+      "default": "Single Only",
+      "description": "Type of release"
+    },
+    "streaming_links": {
+      "type": "array",
+      "description": "Links to the release on streaming platforms",
+      "items": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "Spotify",
+              "Apple Music",
+              "YouTube",
+              "SoundCloud",
+              "Bandcamp",
+              "Amazon Music",
+              "Artist Link YT",
+              "Artist Link Spotify",
+              "Artist Link Amazon",
+              "Artist Link Apple",
+              "Artist Link Pandora"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "title",
+    "release_date",
+    "cover_art_url"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

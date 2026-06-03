@@ -1,0 +1,95 @@
+{
+  "name": "XmasSong",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the Christmas song or album/EP"
+    },
+    "original_artist": {
+      "type": "string",
+      "description": "The original artist of the song (if it's a cover)"
+    },
+    "release_type": {
+      "type": "string",
+      "enum": [
+        "Single",
+        "EP",
+        "Album"
+      ],
+      "default": "Single",
+      "description": "Type of release"
+    },
+    "cover_art_url": {
+      "type": "string",
+      "description": "URL for the cover art image"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "URL for the uploaded audio file (for singles)"
+    },
+    "tracks": {
+      "type": "array",
+      "description": "Individual tracks for EP or Album releases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "track_number": {
+            "type": "number"
+          },
+          "track_title": {
+            "type": "string"
+          },
+          "audio_url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "streaming_links": {
+      "type": "array",
+      "description": "Links to the song on streaming platforms",
+      "items": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "Spotify",
+              "Apple Music",
+              "YouTube",
+              "SoundCloud",
+              "Bandcamp",
+              "Amazon Music"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the song was released"
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description or notes about the song"
+    }
+  },
+  "required": [
+    "title",
+    "cover_art_url",
+    "release_date"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

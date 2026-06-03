@@ -1,0 +1,50 @@
+{
+  "name": "DigitalDownload",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the track"
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the track"
+    },
+    "cover_art_url": {
+      "type": "string",
+      "description": "URL for the cover art image"
+    },
+    "audio_preview_url": {
+      "type": "string",
+      "description": "URL for a short audio preview of the track"
+    },
+    "purchase_url": {
+      "type": "string",
+      "description": "URL to the external purchase page (e.g., Bandcamp, Gumroad)"
+    },
+    "min_price": {
+      "type": "number",
+      "default": 1.0,
+      "description": "The minimum price for the download"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The release date of the track"
+    }
+  },
+  "required": [
+    "title",
+    "cover_art_url",
+    "purchase_url",
+    "release_date"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
